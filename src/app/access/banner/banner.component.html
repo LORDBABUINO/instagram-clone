@@ -1,4 +1,8 @@
 <button type="button" name="button" (click)="toggleState()">Teste</button>
 <div class="banner-background">
-  <img src="/assets/banner-acesso/img_1.png" [@banner]="state" alt="">
+  <img *ngFor="let image of images"
+    [src]="image.url"
+    [@banner]="image.state"
+    alt="Um celular alternando imagens de sites"
+  >
 </div>
