@@ -7,7 +7,7 @@
     <div class="col-sm-6 d-flex justify-content-start">
       <app-login *ngIf="login; else signUp" (showPanel)="showPanel($event)" [@animation-panel]="statePanel"></app-login>
       <ng-template #signUp>
-        <app-sign-up [@animation-panel]="statePanel"></app-sign-up>
+        <app-sign-up (showPanel)="showPanel($event)" [@animation-panel]="statePanel"></app-sign-up>
       </ng-template>
     </div>
   </div>
