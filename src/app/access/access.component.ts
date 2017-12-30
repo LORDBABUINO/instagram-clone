@@ -30,6 +30,7 @@ export class AccessComponent implements OnInit {
 
   public stateBanner: string = 'created'
   public statePanel: string = 'created'
+  public login: boolean = true
 
   constructor() { }
 

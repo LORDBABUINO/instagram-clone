@@ -5,7 +5,10 @@
     </div>
 
     <div class="col-sm-6 d-flex justify-content-start" [@animation-panel]="statePanel">
-		<app-login></app-login>
+      <app-login *ngIf="login; else signUp"></app-login>
+      <ng-template #signUp>
+        <app-sign-up></app-sign-up>
+      </ng-template>
     </div>
   </div>
 </div>
