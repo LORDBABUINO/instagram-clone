@@ -30,7 +30,7 @@ export class BannerComponent implements OnInit {
 
   public state: string = 'hidden'
   public images: Image[] = [
-    { state: 'hidden', url: '/assets/banner-access/img_1.png'},
+    { state: 'visible', url: '/assets/banner-access/img_1.png'},
     { state: 'hidden', url: '/assets/banner-access/img_2.png'},
     { state: 'hidden', url: '/assets/banner-access/img_3.png'},
     { state: 'hidden', url: '/assets/banner-access/img_4.png'},
@@ -39,10 +39,17 @@ export class BannerComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(){
+    setTimeout(() => this.rotate(0), 3000)
   }
 
-  public toggleState(): void {
-    this.state = this.state === 'visible'? 'hidden' : 'visible'
+  public rotate(indexCurrenty: number): void {
+
+    let indexNext = indexCurrenty < 4? indexCurrenty + 1 : 0
+
+    this.images[indexCurrenty].state = 'hidden'
+    this.images[indexNext].state = 'visible'
+
+    setTimeout(() => this.rotate(indexNext), 3000)
   }
 }
