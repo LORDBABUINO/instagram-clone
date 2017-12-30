@@ -51,10 +51,10 @@ export class AccessComponent implements OnInit {
   }
 
   public startAnimation(): void {
-    console.log('inicio da animação')
+    //console.log('inicio da animação')
   }
 
   public endAnimation(): void {
-    console.log('fim da animação')
+    //console.log('fim da animação')
   }
 }
