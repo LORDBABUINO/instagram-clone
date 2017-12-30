@@ -4,10 +4,10 @@
       <app-banner></app-banner>
     </div>
 
-    <div class="col-sm-6 d-flex justify-content-start" [@animation-panel]="statePanel">
-      <app-login *ngIf="login; else signUp"></app-login>
+    <div class="col-sm-6 d-flex justify-content-start">
+      <app-login *ngIf="login; else signUp" (showPanel)="showPanel($event)" [@animation-panel]="statePanel"></app-login>
       <ng-template #signUp>
-        <app-sign-up></app-sign-up>
+        <app-sign-up [@animation-panel]="statePanel"></app-sign-up>
       </ng-template>
     </div>
   </div>

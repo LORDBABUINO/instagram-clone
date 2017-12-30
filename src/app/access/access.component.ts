@@ -37,4 +37,7 @@ export class AccessComponent implements OnInit {
   ngOnInit() {
   }
 
+  public showPanel(event: boolean): void{
+    this.login = event
+  }
 }
