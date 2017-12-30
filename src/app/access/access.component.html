@@ -5,9 +5,20 @@
     </div>
 
     <div class="col-sm-6 d-flex justify-content-start">
-      <app-login *ngIf="login; else signUp" (showPanel)="showPanel($event)" [@animation-panel]="statePanel"></app-login>
+      <app-login
+        *ngIf="login; else signUp"
+        (showPanel)="showPanel($event)"
+        [@animation-panel]="statePanel"
+        (@animation-panel.start)="startAnimation()"
+        (@animation-panel.done)="endAnimation()"
+      ></app-login>
       <ng-template #signUp>
-        <app-sign-up (showPanel)="showPanel($event)" [@animation-panel]="statePanel"></app-sign-up>
+        <app-sign-up
+          (showPanel)="showPanel($event)"
+          [@animation-panel]="statePanel"
+          (@animation-panel.start)="startAnimation()"
+          (@animation-panel.done)="endAnimation()"
+        ></app-sign-up>
       </ng-template>
     </div>
   </div>

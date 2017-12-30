@@ -49,4 +49,12 @@ export class AccessComponent implements OnInit {
   public showPanel(event: boolean): void{
     this.login = event
   }
+
+  public startAnimation(): void {
+    console.log('inicio da animação')
+  }
+
+  public endAnimation(): void {
+    console.log('fim da animação')
+  }
 }
