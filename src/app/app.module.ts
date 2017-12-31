@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ReactiveFormsModule } from '@angular/forms'
+import { RouterModule } from '@angular/router'
+
+import { ROUTES } from './app.routes'
 
 import { Auth } from './auth.service'
 
@@ -27,7 +30,8 @@ import { PostsComponent } from './home/posts/posts.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [ Auth ],
   bootstrap: [AppComponent]
