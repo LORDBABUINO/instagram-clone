@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms'
+import { User } from '../user.model'
 
 @Component({
   selector: 'app-sign-up',
@@ -27,6 +28,11 @@ export class SignUpComponent implements OnInit {
   }
 
   public signUp(): void{
-    console.log(this.form)
+    let user: User = new User(
+      this.form.value.email,
+      this.form.value.fullName,
+      this.form.value.userName,
+      this.form.value.password
+    )
   }
 }
