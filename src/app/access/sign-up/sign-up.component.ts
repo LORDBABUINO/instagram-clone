@@ -39,5 +39,6 @@ export class SignUpComponent implements OnInit {
     )
 
     this.auth.signUp(user)
+      .then(() => this.showLogin())
   }
 }

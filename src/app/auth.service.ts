@@ -2,9 +2,9 @@ import { User } from './access/user.model'
 import * as firebase from 'firebase'
 
 export class Auth {
-  public signUp(user: User): void {
+  public signUp(user: User): Promise<any> {
 
-    firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+    return firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
       .then((response: any) => {
 
         delete user.password
