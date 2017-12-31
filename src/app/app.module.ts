@@ -10,6 +10,8 @@ import { AccessComponent } from './access/access.component';
 import { BannerComponent } from './access/banner/banner.component';
 import { LoginComponent } from './access/login/login.component';
 import { SignUpComponent } from './access/sign-up/sign-up.component';
+import { HomeComponent } from './home/home.component';
+import { PostsComponent } from './home/posts/posts.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { SignUpComponent } from './access/sign-up/sign-up.component';
     AccessComponent,
     BannerComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    HomeComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
