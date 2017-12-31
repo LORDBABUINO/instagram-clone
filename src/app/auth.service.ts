@@ -16,4 +16,10 @@ export class Auth {
         console.log(error)
       })
   }
+
+  public authenticate(email: string, password: string): void {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((response:any) => console.log(response))
+      .catch((error: Error) => console.log(error))
+  }
 }
