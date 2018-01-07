@@ -31,6 +31,7 @@ export class Auth {
         firebase.auth().currentUser.getIdToken()
           .then((idToken: string) => {
             this.tokenId = idToken
+            localStorage.setItem('idToken', idToken)
             this.router.navigate(['/home'])
           })
       })
