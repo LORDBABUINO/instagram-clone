@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router'
 import { ROUTES } from './app.routes'
 
 import { Auth } from './auth.service'
+import { AuthGuard } from './auth-guard.service'
 
 import { AppComponent } from './app.component';
 import { AccessComponent } from './access/access.component';
@@ -33,7 +34,7 @@ import { PostsComponent } from './home/posts/posts.component';
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ Auth ],
+  providers: [ Auth, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
