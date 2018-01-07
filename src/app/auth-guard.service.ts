@@ -8,11 +8,7 @@ export class AuthGuard {
   constructor(private auth: Auth){}
 
   canActivate(): boolean {
-    if(this.auth.tokenId !== undefined &&
-      localStorage.getItem('idToken') != null){
-        this.auth.tokenId = localStorage.getItem('idToken')
-      }
 
-    return this.auth.tokenId !== undefined
+    return this.auth.isAuthenticated()
   }
 }

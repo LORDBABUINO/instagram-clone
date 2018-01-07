@@ -38,6 +38,19 @@ export class Auth {
       .catch((error: Error) => console.log(error))
   }
 
+  public isAuthenticated(): boolean {
+    if(this.tokenId !== undefined &&
+      localStorage.getItem('idToken') != null){
+        this.tokenId = localStorage.getItem('idToken')
+      }
+
+    if(this.tokenId !== undefined){
+      this.router.navigate(['/'])
+    }
+
+    return this.tokenId !== undefined
+  }
+
   public sair(): void {
     firebase.auth().signOut()
       .then(() => {
