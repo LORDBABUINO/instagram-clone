@@ -37,4 +37,13 @@ export class Auth {
       })
       .catch((error: Error) => console.log(error))
   }
+
+  public sair(): void {
+    firebase.auth().signOut()
+      .then(() => {
+        localStorage.removeItem('idToken')
+        this.tokenId = undefined
+        this.router.navigate(['/'])
+      })
+  }
 }
