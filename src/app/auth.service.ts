@@ -8,7 +8,7 @@ export class Auth {
 
   public tokenId: string
 
-  constructor(private router: Router){}
+  constructor(public router: Router){}
 
   public signUp(user: User): Promise<any> {
 
@@ -37,12 +37,12 @@ export class Auth {
   }
 
   public isAuthenticated(): boolean {
-    if(this.tokenId !== undefined &&
+    if(this.tokenId === undefined &&
       localStorage.getItem('idToken') != null){
         this.tokenId = localStorage.getItem('idToken')
       }
 
-    if(this.tokenId !== undefined){
+    if(this.tokenId === undefined){
       this.router.navigate(['/'])
     }
 
