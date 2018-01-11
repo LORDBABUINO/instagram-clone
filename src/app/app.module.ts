@@ -16,6 +16,7 @@ import { LoginComponent } from './access/login/login.component';
 import { SignUpComponent } from './access/sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { PostsComponent } from './home/posts/posts.component';
+import { AddPostComponent } from './home/add-post/add-post.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PostsComponent } from './home/posts/posts.component';
     LoginComponent,
     SignUpComponent,
     HomeComponent,
-    PostsComponent
+    PostsComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
