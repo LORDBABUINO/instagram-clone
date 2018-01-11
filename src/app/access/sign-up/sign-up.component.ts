@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 import { User } from '../user.model'
 import { Auth } from '../../auth.service'
@@ -14,10 +14,25 @@ export class SignUpComponent implements OnInit {
   @Output() public showPanel: EventEmitter<boolean> = new EventEmitter<boolean>()
 
   public form: FormGroup = new FormGroup({
-    'email': new FormControl(null),
-    'fullName': new FormControl(null),
-    'userName': new FormControl(null),
-    'password': new FormControl(null)
+    'email': new FormControl(null, [
+      Validators.required,
+      Validators.email,
+      Validators.minLength(6),
+      Validators.maxLength(20)
+    ]),
+    'fullName': new FormControl(null, [
+      Validators.required,
+      Validators.maxLength(50)
+    ]),
+    'userName': new FormControl(null, [
+      Validators.required,
+      Validators.maxLength(50)
+    ]),
+    'password': new FormControl(null, [
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(20)
+    ])
   })
 
   constructor(private auth: Auth) { }
