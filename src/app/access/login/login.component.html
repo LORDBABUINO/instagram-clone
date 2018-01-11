@@ -19,7 +19,7 @@
           formControlName="password"
         >
       </div>
-      <button type="submit" class="btn btn-primary btn-sm btn-block">Entrar</button>
+      <button type="submit" class="btn btn-primary btn-sm btn-block" [disabled]="form.invalid? true : null">Entrar</button>
     </form>
     <hr />
 

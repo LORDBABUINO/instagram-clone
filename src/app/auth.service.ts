@@ -20,9 +20,7 @@ export class Auth {
         firebase.database().ref(`user_detail/${btoa(user.email)}`)
           .set(user)
       })
-      .catch((error: Error) => {
-        console.log(error)
-      })
+      .catch((error: Error) => alert(error.message))
   }
 
   public authenticate(email: string, password: string): void {
@@ -35,7 +33,7 @@ export class Auth {
             this.router.navigate(['/home'])
           })
       })
-      .catch((error: Error) => console.log(error))
+      .catch((error: Error) => alert(error.message))
   }
 
   public isAuthenticated(): boolean {
