@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import * as firebase from 'firebase'
+
+import { Bd } from '../../bd.service'
 
 @Component({
   selector: 'app-add-post',
@@ -8,16 +11,26 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AddPostComponent implements OnInit {
 
+  public email: string
+
   public form: FormGroup = new FormGroup({
     'title': new FormControl(null)
   })
 
-  constructor() { }
+  constructor(
+    private bd: Bd
+  ) { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.email = user.email
+    })
   }
 
-  public publicar(): void {
-    console.log('publicado')
+  public post(): void {
+    this.bd.post({
+      email: this.email,
+      title: this.form.value.title
+    })
   }
 }
