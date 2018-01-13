@@ -33,4 +33,8 @@ export class AddPostComponent implements OnInit {
       title: this.form.value.title
     })
   }
+
+  public prepareImageUpload(event: Event): void {
+    console.log((<HTMLInputElement>event.target).files)
+  }
 }
