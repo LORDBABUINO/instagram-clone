@@ -8,6 +8,17 @@ export class Bd {
     firebase.storage().ref()
       .child(`images/${imageName}`)
       .put(newPost.image)
+      .on(firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot: any) => {
+          console.log(snapshot)
+        },
+        (error) => {
+          console.log(error)
+        },
+        () => {
+          console.log('upload complete')
+        }
+      )
 
     /*
     firebase.database().ref(`publicacoes/${btoa(newPost.email)}`)
