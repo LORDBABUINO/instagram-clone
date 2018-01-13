@@ -12,6 +12,7 @@ import { Bd } from '../../bd.service'
 export class AddPostComponent implements OnInit {
 
   public email: string
+  private image: any
 
   public form: FormGroup = new FormGroup({
     'title': new FormControl(null)
@@ -30,11 +31,12 @@ export class AddPostComponent implements OnInit {
   public post(): void {
     this.bd.post({
       email: this.email,
-      title: this.form.value.title
+      title: this.form.value.title,
+      image: this.image
     })
   }
 
   public prepareImageUpload(event: Event): void {
-    console.log((<HTMLInputElement>event.target).files)
+    this.image = (<HTMLInputElement>event.target).files[0]
   }
 }
