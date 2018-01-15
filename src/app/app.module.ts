@@ -9,6 +9,7 @@ import { ROUTES } from './app.routes'
 import { Auth } from './auth.service'
 import { AuthGuard } from './auth-guard.service'
 import { Bd } from './bd.service'
+import { Progress } from './progress.service'
 
 import { AppComponent } from './app.component';
 import { AccessComponent } from './access/access.component';
@@ -37,7 +38,7 @@ import { AddPostComponent } from './home/add-post/add-post.component';
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ Auth, AuthGuard, Bd ],
+  providers: [ Auth, AuthGuard, Bd, Progress ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

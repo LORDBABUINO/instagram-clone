@@ -3,6 +3,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 import * as firebase from 'firebase'
 
 import { Bd } from '../../bd.service'
+import { Progress } from '../../progress.service'
+
+import { Observable } from 'rxjs/Observable'
+import { Subject } from 'rxjs/Subject'
+import 'rxjs/Rx'
 
 @Component({
   selector: 'app-add-post',
@@ -19,7 +24,8 @@ export class AddPostComponent implements OnInit {
   })
 
   constructor(
-    private bd: Bd
+    private bd: Bd,
+    private progress: Progress
   ) { }
 
   ngOnInit() {
@@ -34,6 +40,22 @@ export class AddPostComponent implements OnInit {
       title: this.form.value.title,
       image: this.image
     })
+
+    let watchUpload = Observable.interval(1500)
+    let continueProgress = new Subject()
+
+    continueProgress.next(true)
+
+    watchUpload
+      .takeUntil(continueProgress)
+      .subscribe(() => {
+
+        console.log(this.progress.status)
+        console.log(this.progress.state)
+
+        if(this.progress.status === 'complete')
+          continueProgress.next(false)
+      })
   }
 
   public prepareImageUpload(event: Event): void {
