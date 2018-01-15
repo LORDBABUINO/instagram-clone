@@ -48,7 +48,12 @@ export class Bd {
             .getDownloadURL()
             .then((url: string) => {
               post.imageUrl = url
-              posts.push(post)
+              firebase.database().ref(`user_detail/${btoa(email)}`)
+                .once('value')
+                .then((snapshot: any) => {
+                  post.userName = snapshot.val().userName
+                  posts.push(post)
+                })
             })
         })
 
