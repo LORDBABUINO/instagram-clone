@@ -10,6 +10,7 @@ import * as firebase from 'firebase'
 export class PostsComponent implements OnInit {
 
   public email: string
+  public posts: any
 
   constructor(private bd: Bd) { }
 
@@ -22,5 +23,8 @@ export class PostsComponent implements OnInit {
 
   public updateTimeLine(): void {
     this.bd.getPosts(this.email)
+      .then((posts: any) => {
+        this.posts = posts
+      })
   }
 }

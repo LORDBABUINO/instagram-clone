@@ -32,32 +32,35 @@ export class Bd {
       })
   }
 
-  public getPosts(email: string): any {
-    firebase.database().ref(`posts/${btoa(email)}`)
-      .once('value')
-      .then((snapshot) => {
+  public getPosts(email: string): Promise<any> {
 
-        let posts: any[] = []
+    return new Promise((resolve, reject) => {
+      firebase.database().ref(`posts/${btoa(email)}`)
+        .once('value')
+        .then((snapshot) => {
 
-        snapshot.forEach((childSnapshot: any) => {
+          let posts: any[] = []
 
-          let post = childSnapshot.val()
+          snapshot.forEach((childSnapshot: any) => {
 
-          firebase.storage().ref()
-            .child(`images/${childSnapshot.key}`)
-            .getDownloadURL()
-            .then((url: string) => {
-              post.imageUrl = url
-              firebase.database().ref(`user_detail/${btoa(email)}`)
-                .once('value')
-                .then((snapshot: any) => {
-                  post.userName = snapshot.val().userName
-                  posts.push(post)
-                })
-            })
+            let post = childSnapshot.val()
+
+            firebase.storage().ref()
+              .child(`images/${childSnapshot.key}`)
+              .getDownloadURL()
+              .then((url: string) => {
+                post.imageUrl = url
+                firebase.database().ref(`user_detail/${btoa(email)}`)
+                  .once('value')
+                  .then((snapshot: any) => {
+                    post.userName = snapshot.val().userName
+                    posts.push(post)
+                  })
+              })
+          })
+
+          resolve(posts)
         })
-
-        console.log(posts)
-      })
+    })
   }
 }
