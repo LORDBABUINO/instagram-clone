@@ -9,7 +9,7 @@ export class Bd {
 
   public post(newPost: any): void {
 
-    firebase.database().ref(`publicacoes/${btoa(newPost.email)}`)
+    firebase.database().ref(`posts/${btoa(newPost.email)}`)
       .push({ title: newPost.title })
       .then((response: any) => {
         let imageName = response.key
@@ -33,10 +33,26 @@ export class Bd {
   }
 
   public getPosts(email: string): any {
-    firebase.database().ref(`publicacoes/${btoa(email)}`)
+    firebase.database().ref(`posts/${btoa(email)}`)
       .once('value')
       .then((snapshot) => {
-        console.log(snapshot.val())
+
+        let posts: any[] = []
+
+        snapshot.forEach((childSnapshot: any) => {
+
+          let post = childSnapshot.val()
+
+          firebase.storage().ref()
+            .child(`images/${childSnapshot.key}`)
+            .getDownloadURL()
+            .then((url: string) => {
+              post.imageUrl = url
+              posts.push(post)
+            })
+        })
+
+        console.log(posts)
       })
   }
 }
