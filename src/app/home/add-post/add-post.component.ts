@@ -53,8 +53,6 @@ export class AddPostComponent implements OnInit {
       .takeUntil(continueProgress)
       .subscribe(() => {
 
-        console.log(this.progress.state)
-
         this.uploadPercentage = Math.round(100*this.progress.state.bytesTransferred/this.progress.state.totalBytes)
         if(this.progress.status === 'complete')
           continueProgress.next(false)
