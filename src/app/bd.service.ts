@@ -29,6 +29,14 @@ export class Bd {
               this.progress.status = 'complete'
             }
           )
-      })      
+      })
+  }
+
+  public getPosts(email: string): any {
+    firebase.database().ref(`publicacoes/${btoa(email)}`)
+      .once('value')
+      .then((snapshot) => {
+        console.log(snapshot.val())
+      })
   }
 }
