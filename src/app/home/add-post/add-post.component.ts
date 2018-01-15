@@ -19,6 +19,9 @@ export class AddPostComponent implements OnInit {
   public email: string
   private image: any
 
+  public postProgress: string = 'pending'
+  public uploadPercentage: number
+
   public form: FormGroup = new FormGroup({
     'title': new FormControl(null)
   })
@@ -50,11 +53,13 @@ export class AddPostComponent implements OnInit {
       .takeUntil(continueProgress)
       .subscribe(() => {
 
-        console.log(this.progress.status)
         console.log(this.progress.state)
 
+        this.uploadPercentage = Math.round(100*this.progress.state.bytesTransferred/this.progress.state.totalBytes)
         if(this.progress.status === 'complete')
           continueProgress.next(false)
+
+        this.postProgress = this.progress.status
       })
   }
 
