@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as firebase from 'firebase'
 
@@ -15,6 +15,8 @@ import 'rxjs/Rx'
   styleUrls: ['./add-post.component.css']
 })
 export class AddPostComponent implements OnInit {
+
+  @Output() timeLineUpdater: EventEmitter<any> = new EventEmitter<any> ()
 
   public email: string
   private image: any
@@ -54,8 +56,10 @@ export class AddPostComponent implements OnInit {
       .subscribe(() => {
 
         this.uploadPercentage = Math.round(100*this.progress.state.bytesTransferred/this.progress.state.totalBytes)
-        if(this.progress.status === 'complete')
+        if(this.progress.status === 'complete'){
+          this.timeLineUpdater.emit()
           continueProgress.next(false)
+        }
 
         this.postProgress = this.progress.status
       })

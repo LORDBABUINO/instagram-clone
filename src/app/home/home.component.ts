@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Auth } from '../auth.service'
 
 @Component({
@@ -8,6 +8,8 @@ import { Auth } from '../auth.service'
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild('posts') public posts: any
+
   constructor(private auth: Auth) { }
 
   ngOnInit() {
@@ -15,5 +17,9 @@ export class HomeComponent implements OnInit {
 
   public sair(): void {
     this.auth.sair()
+  }
+
+  public updateTimeLine(): void {
+    this.posts.updateTimeLine()
   }
 }
